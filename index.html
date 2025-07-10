@@ -1,3 +1,13 @@
+<script type="text/javascript">
+	atOptions = {
+		'key' : 'b20370bf8c0686351051c646c58471e2',
+		'format' : 'iframe',
+		'height' : 50,
+		'width' : 320,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/b20370bf8c0686351051c646c58471e2/invoke.js"></script>
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -36,8 +46,8 @@
       top: 0; left: 0; right: 0; bottom: 0;
       /* Lord Shiva image replaces the Unsplash nature image */
       /* Attribution-free source: https://images.pexels.com/photos/1649782/pexels-photo-1649782.jpeg */
-      background: 
-        url('https://svgshare.com/i/15bU.svg') center 2%/contain no-repeat, 
+      background:
+        url('https://svgshare.com/i/15bU.svg') center 2%/contain no-repeat,
         url('https://images.pexels.com/photos/1649782/pexels-photo-1649782.jpeg?auto=compress&w=1200&q=80') center 40%/cover no-repeat;
       opacity: 0.96;
       pointer-events: none;
@@ -167,7 +177,7 @@
       backdrop-filter: blur(1.3px);
       animation: fadeIn 1.5s;
     }
-    .mantra-card:hover { 
+    .mantra-card:hover {
       transform: translateY(-3px) scale(1.032);
       box-shadow: 0 0 32px #FFD700, 0 0 9px #fffbe8;
       border-color: #fffbe8;
@@ -837,22 +847,45 @@
       "शिव ही सत्य हैं, शिव ही अनंत हैं।",
       "शिव का नाम जपिए, जीवन में उजाला लाइए।"
     ];
+
+    // LocalStorage key for last ad display time
+    const LAST_AD_TIME_KEY = 'lastAdDisplayTime';
+    const AD_INTERVAL_MS = 60 * 1000; // 1 minute in milliseconds
+
+    // Flag to ensure ad opens only once per eligible session
+    let shouldOpenAdOnPopupClose = false;
+
     window.addEventListener('DOMContentLoaded', function() {
-      setTimeout(() => {
-        if (
-          !window.sawanWished &&
-          document.getElementById('sawanWishPopup').style.display !== 'flex'
-        ) {
+      // Sawan Wish Popup logic (unrelated to ad interval)
+      if (!window.sawanWished && document.getElementById('sawanWishPopup').style.display !== 'flex') {
+        // Check if enough time has passed since the last ad display
+        const lastAdTime = localStorage.getItem(LAST_AD_TIME_KEY);
+        const currentTime = new Date().getTime();
+
+        if (lastAdTime === null || (currentTime - parseInt(lastAdTime)) > AD_INTERVAL_MS) {
+          // It's either the first visit ever, or more than 1 minute has passed
           const popup = document.getElementById('motivationalPopup');
           const popupMsg = document.getElementById('popupMsg');
           let thought = shivThoughts[Math.floor(Math.random() * shivThoughts.length)];
           popupMsg.textContent = "🌼 " + thought;
           popup.style.display = 'flex';
+          shouldOpenAdOnPopupClose = true; // Set flag to open ad when this popup closes
         }
-      }, 900);
+      }
     });
+
     function closePopup() {
       document.getElementById('motivationalPopup').style.display = 'none';
+      // अगर ऐड दिखाने का फ्लैग सेट है, तो ऐड खोलें और टाइमस्टैम्प अपडेट करें
+      if (shouldOpenAdOnPopupClose) {
+        window.open("https://www.profitableratecpm.com/iwa3jty3u?key=f11d9205bf681ff71ea4068c23f9f89e", "_blank");
+        localStorage.setItem(LAST_AD_TIME_KEY, new Date().getTime()); // पिछली बार ऐड दिखाने का समय स्टोर करें
+        shouldOpenAdOnPopupClose = false; // फ्लैग रीसेट करें ताकि एक सेशन में एक ही बार ऐड खुले
+      }
+    }
+
+    function closeSawanWish() {
+      document.getElementById('sawanWishPopup').style.display = 'none';
     }
 
     // Name input and share logic
@@ -870,7 +903,10 @@
       }
       let msg = `🕉️ ${userName} ने आपके लिए कुछ विशेष भेजा है 🔱 \nनीचे लिंक पर क्लिक करें:`;
       let shareText = encodeURIComponent(msg + "\n" + window.location.href);
+
+      // WhatsApp शेयर लिंक सेट करें
       whatsappShareLink.href = `https://wa.me/?text=${shareText}`;
+
       shareMsg.innerHTML = `<b>आप अपने मित्रों को यह दिव्य संदेश भेज सकते हैं:</b><br><br><span style="font-family:'Tiro Devanagari Hindi',serif;font-size:1.13rem;">${msg}</span>`;
       shareSection.style.display = 'block';
       shareSection.style.animation = "fadeIn 1.1s";
@@ -907,3 +943,13 @@
   </script>
 </body>
 </html>
+<script type="text/javascript">
+	atOptions = {
+		'key' : 'b20370bf8c0686351051c646c58471e2',
+		'format' : 'iframe',
+		'height' : 50,
+		'width' : 320,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/b20370bf8c0686351051c646c58471e2/invoke.js"></script>
