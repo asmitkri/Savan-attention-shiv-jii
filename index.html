@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>सावन शिव भक्ति Divine App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:wght@400;700&family=Festive&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-bg: linear-gradient(135deg, #1e0940 0%, #4b145e 50%, #18112e 100%);
+      --gold: #FFD700;
+      --deep-purple: #2d0736;
+      --light-gold: #fffbe8;
+      --btn-gold: linear-gradient(98deg, #FFD700 80%, #fff6c1 100%);
+      --btn-gold-hover: linear-gradient(98deg, #fffbe8 86%, #FFD700 100%);
+      --card-bg: rgba(35, 14, 48, 0.93);
+      --card-gradient: linear-gradient(120deg, #2d0736 70%, #41245b 100%);
+      --border-glow: 0 0 13px #FFD700, 0 0 2px #fff;
+      --btn-glow: 0 0 12px #FFD700, 0 0 6px #fff;
+      --input-bg: rgba(53, 20, 70, 0.94);
+      --festive: 'Festive', cursive;
+      --hindi: 'Tiro Devanagari Hindi', serif;
+    }
+    html, body {
+      min-height: 100vh;
+      margin: 0;
+      background: var(--primary-bg);
+      color: #FFD700;
+      overflow-x: hidden;
+      position: relative;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      z-index: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
+      /* Lord Shiva image replaces the Unsplash nature image */
+      /* Attribution-free source: https://images.pexels.com/photos/1649782/pexels-photo-1649782.jpeg */
+      background: 
+        url('https://svgshare.com/i/15bU.svg') center 2%/contain no-repeat, 
+        url('https://images.pexels.com/photos/1649782/pexels-photo-1649782.jpeg?auto=compress&w=1200&q=80') center 40%/cover no-repeat;
+      opacity: 0.96;
+      pointer-events: none;
+      filter: brightness(.90) blur(0.5px);
+    }
+    .particle {
+      pointer-events: none;
+      position: fixed;
+      border-radius: 50%;
+      opacity: 0.19;
+      background: radial-gradient(circle, #fffbe8 0%, #FFD700 40%, transparent 100%);
+      z-index: 1;
+      animation: floatParticle 14s linear infinite;
+    }
+    @keyframes floatParticle {
+      0% { transform: translateY(0) scale(1);}
+      60% { opacity:0.29;}
+      100% { transform: translateY(-90vh) scale(1.19);}
+    }
+    .bg-symbol {
+      position: fixed;
+      z-index: 2;
+      opacity: 0.13;
+      font-size: 6vw;
+      animation: floatY 26s linear infinite;
+      color: #fff6c1;
+      text-shadow: 0 0 45px #FFD700, 0 0 12px #fff;
+      pointer-events: none;
+      user-select: none;
+    }
+    .bg-symbol.trishul1 { top: 7%; left: 12%; animation-delay: 0s;}
+    .bg-symbol.om1 { top: 63%; left: 81%; animation-delay: 8s;}
+    .bg-symbol.trishul2 { top: 39%; left: 70%; animation-delay: 16s;}
+    .bg-symbol.om2 { top: 12%; left: 51%; animation-delay: 19s;}
+    .bg-symbol.damru { top: 78%; left: 20%; animation-delay: 6s;}
+    .bg-symbol.crescent { top: 23%; left: 77%; animation-delay: 22s;}
+    .bg-symbol.ganga { top: 86%; left: 66%; animation-delay: 10s;}
+    @keyframes floatY {
+      from { transform: translateY(0);}
+      to   { transform: translateY(-40vh);}
+    }
+    .container {
+      position: relative;
+      z-index: 3;
+      max-width: 550px;
+      margin: 0 auto;
+      padding: 40px 14px 110px 14px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 1.13rem;
+    }
+    .divine-header {
+      font-family: var(--festive), var(--hindi), serif;
+      font-size: 2.7rem;
+      text-align: center;
+      color: var(--gold);
+      letter-spacing: 3px;
+      margin-top: 10px;
+      margin-bottom: 0;
+      text-shadow: 0 0 40px #FFD700, 0 0 12px #fff, 0 0 20px #fffbe877;
+      animation: divineGlow 2.6s alternate infinite;
+      position: relative;
+      letter-spacing: 4px;
+      background: linear-gradient(90deg, #FFD700 66%, #fffbe8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    @keyframes divineGlow {
+      from { text-shadow: 0 0 18px #FFD700, 0 0 5px #fff;}
+      to   { text-shadow: 0 0 54px #FFD700, 0 0 28px #fff, 0 0 30px #FFD70077;}
+    }
+    .divine-sub {
+      font-family: var(--hindi), serif;
+      font-size: 1.45rem;
+      text-align: center;
+      color: #FFD700;
+      text-shadow: 0 0 18px #FFD700, 0 0 7px #fff;
+      margin-bottom: 24px;
+      letter-spacing: 1.7px;
+    }
+    .blessing-day {
+      background: linear-gradient(90deg, #FFD70044, #fffbe822, #FFD70044);
+      border: 2.5px solid #FFD700;
+      box-shadow: 0 0 18px #FFD700, 0 0 2px #fff;
+      font-family: var(--hindi), serif;
+      color: #FFD700;
+      border-radius: 22px;
+      padding: 16px 17px 12px 19px;
+      margin-bottom: 22px;
+      font-size: 1.16rem;
+      text-align: center;
+      animation: fadeIn 1.5s;
+      letter-spacing: 1.3px;
+    }
+    .countdown-container {
+      margin-bottom: 24px;
+      background: rgba(44, 16, 59, 0.68);
+      border-radius: 14px;
+      border: 2px solid #FFD700;
+      box-shadow: 0 0 10px #FFD700, 0 0 2px #fff;
+      color: #fffbe8;
+      font-size: 1.13rem;
+      text-align: center;
+      padding: 9px 7px 9px 9px;
+      letter-spacing: 1.1px;
+    }
+    .mantra-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      width: 100%;
+      margin-bottom: 32px;
+    }
+    .mantra-card {
+      background: var(--card-bg);
+      background: var(--card-gradient);
+      border-radius: 20px;
+      border: 2.7px solid #FFD700;
+      box-shadow: 0 0 22px #FFD700, 0 0 5px #fff;
+      padding: 18px 16px 13px;
+      color: #fffbe8;
+      position: relative;
+      overflow: hidden;
+      transition: transform .22s;
+      backdrop-filter: blur(1.3px);
+      animation: fadeIn 1.5s;
+    }
+    .mantra-card:hover { 
+      transform: translateY(-3px) scale(1.032);
+      box-shadow: 0 0 32px #FFD700, 0 0 9px #fffbe8;
+      border-color: #fffbe8;
+    }
+    .mantra-text {
+      font-size: 1.28rem;
+      font-family: var(--hindi), serif;
+      color: #FFD700;
+      text-shadow: 0 0 15px #FFD700;
+      margin-bottom: 7px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: 1.6px;
+    }
+    .mantra-explanation {
+      font-size: 1.07rem;
+      color: #fffbe8;
+      margin-left: 5px;
+      opacity: 0.97;
+      letter-spacing: 1.1px;
+    }
+    .aarti-section {
+      margin: 22px 0 0 0;
+      width: 100%;
+      background: linear-gradient(90deg, #FFD70022, #fffbe822, #FFD70022);
+      border-radius: 19px;
+      border: 2.3px solid #FFD700;
+      box-shadow: 0 0 15px #FFD700, 0 0 2px #fff;
+      padding: 10px 13px 19px 13px;
+      text-align: center;
+      animation: fadeIn 2s;
+    }
+    .aarti-title {
+      font-family: var(--hindi), serif;
+      color: #FFD700;
+      font-size: 1.19rem;
+      margin: 0 0 9px 0;
+      letter-spacing: 2px;
+      text-shadow: 0 0 9px #FFD700;
+    }
+    .aarti-lyrics {
+      font-family: var(--hindi), serif;
+      color: #fffbe8;
+      font-size: 1.09rem;
+      line-height: 1.7;
+      letter-spacing: 1.5px;
+      margin: 0;
+      max-height: 230px;
+      overflow: hidden;
+      animation: lyricGlow 1.7s alternate infinite;
+      text-shadow: 0 0 7px #FFD700;
+      user-select: none;
+    }
+    @keyframes lyricGlow {
+      from { text-shadow: 0 0 9px #FFD700;}
+      to   { text-shadow: 0 0 22px #FFD700;}
+    }
+    .aarti-btn {
+      margin-top: 10px;
+      padding: 10px 28px;
+      border: none;
+      border-radius: 22px;
+      background: var(--btn-gold);
+      color: #1a0633;
+      font-family: inherit;
+      font-size: 1.17rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 17px #FFD700, 0 0 7px #fffbe8;
+      letter-spacing: 1.7px;
+      outline: none;
+      transition: background 0.18s, transform 0.14s, box-shadow 0.13s;
+      text-shadow: 0 0 7px #fffbe8;
+    }
+    .aarti-btn:hover,.divine-btn:hover,.mala-btn:hover,.offer-btn:hover {
+      background: var(--btn-gold-hover);
+      color: #2d0736;
+      transform: scale(1.045);
+    }
+    .aarti-btn:active {
+      transform: scale(0.97);
+      background: #fffbe8;
+      box-shadow: 0 0 8px #FFD700;
+    }
+    .mala-section {
+      margin: 19px 0 13px 0;
+      background: rgba(44, 16, 59, 0.78);
+      border-radius: 16px;
+      border: 2.2px solid #FFD700;
+      box-shadow: 0 0 12px #FFD700, 0 0 2px #fff;
+      color: #fffbe8;
+      font-size: 1.13rem;
+      text-align: center;
+      padding: 15px 8px 15px 8px;
+    }
+    .mala-count {
+      display: inline-block;
+      font-size: 1.45rem;
+      color: #FFD700;
+      background: #2d0736;
+      border-radius: 15px;
+      border: 2px solid #FFD700;
+      box-shadow: 0 0 10px #FFD700;
+      padding: 8px 25px 7px;
+      margin: 10px 0;
+      letter-spacing: 4px;
+      font-family: var(--hindi), serif;
+      animation: divineGlow 1.8s alternate infinite;
+    }
+    .mala-btn {
+      margin: 8px 13px 0 0;
+      padding: 8px 18px;
+      border: none;
+      border-radius: 15px;
+      background: var(--btn-gold);
+      color: #1a0633;
+      font-family: inherit;
+      font-size: 1.08rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 9px #FFD700;
+      letter-spacing: 1.5px;
+      outline: none;
+      transition: background 0.18s, transform 0.14s;
+    }
+    .mala-btn:active {
+      transform: scale(0.95);
+      background: #fffbe8;
+    }
+    .offer-section {
+      margin: 15px 0 18px 0;
+      background: rgba(44, 16, 59, 0.91);
+      border-radius: 17px;
+      border: 2.1px solid #FFD700;
+      box-shadow: 0 0 15px #FFD700, 0 0 2px #fff;
+      color: #fffbe8;
+      font-size: 1.13rem;
+      text-align: center;
+      padding: 13px 8px 10px 8px;
+      animation: fadeIn 2s;
+    }
+    .offer-btn {
+      margin: 10px 10px 0 0;
+      padding: 10px 21px;
+      border: none;
+      border-radius: 15px;
+      background: var(--btn-gold);
+      color: #1a0633;
+      font-family: inherit;
+      font-size: 1.19rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 9px #FFD700;
+      letter-spacing: 1.5px;
+      outline: none;
+      transition: background 0.18s, transform 0.14s;
+    }
+    .offer-btn:active {
+      transform: scale(0.97);
+      background: #fffbe8;
+    }
+    .offering-anim {
+      position: fixed;
+      z-index: 15;
+      font-size: 2.5rem;
+      pointer-events: none;
+      animation: floatOffering 2.1s cubic-bezier(0.19,1,0.22,1);
+      will-change: transform, opacity;
+    }
+    @keyframes floatOffering {
+      0% {
+        opacity: 0.55;
+        transform: translateY(0) scale(1);
+      }
+      70% {
+        opacity: 1;
+        transform: translateY(-40vh) scale(1.29) rotate(-10deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-60vh) scale(1.2) rotate(18deg);
+      }
+    }
+    .quiz-section {
+      margin: 18px 0 28px 0;
+      background: rgba(44, 16, 59, 0.91);
+      border-radius: 16px;
+      border: 2px solid #FFD700;
+      box-shadow: 0 0 14px #FFD700, 0 0 2px #fff;
+      color: #fffbe8;
+      font-size: 1.13rem;
+      text-align: center;
+      padding: 14px 9px 9px 9px;
+      animation: fadeIn 1.6s;
+    }
+    .quiz-q {
+      font-family: var(--hindi), serif;
+      color: #FFD700;
+      font-size: 1.14rem;
+      margin-bottom: 7px;
+      letter-spacing: 1.1px;
+    }
+    .quiz-opt {
+      display: block;
+      margin: 7px auto;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 13px;
+      background: var(--btn-gold);
+      color: #1a0633;
+      font-family: inherit;
+      font-size: 1.06rem;
+      cursor: pointer;
+      box-shadow: 0 0 10px #FFD700;
+      letter-spacing: 1.1px;
+      outline: none;
+      transition: background 0.18s, transform 0.14s;
+      width: 90%;
+      max-width: 280px;
+    }
+    .quiz-opt:active {
+      transform: scale(0.96);
+      background: #fffbe8;
+    }
+    .quiz-feedback {
+      color: #FFD700;
+      font-weight: bold;
+      margin-top: 10px;
+      text-shadow: 0 0 7px #FFD700;
+      animation: fadeIn 1s;
+      font-size: 1.1rem;
+    }
+    .name-form {
+      width: 100%;
+      max-width: 370px;
+      margin: 0 auto 18px auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      position: relative;
+      z-index: 2;
+    }
+    .name-input-box {
+      position: relative;
+      width: 100%;
+    }
+    .name-input {
+      width: 100%;
+      font-family: inherit;
+      font-size: 1.22rem;
+      background: var(--input-bg);
+      color: #FFD700;
+      border-radius: 15px;
+      border: 2px solid #FFD700;
+      box-shadow: 0 0 13px #FFD700;
+      padding: 12px 15px;
+      outline: none;
+      transition: box-shadow .2s, border-color .2s;
+      animation: inputGlow 1.9s alternate infinite;
+      letter-spacing: 1.3px;
+      text-align: center;
+    }
+    .name-input:focus { box-shadow: 0 0 22px #FFD700, 0 0 8px #fff; border-color: #fffbe8;}
+    @keyframes inputGlow {
+      from{ box-shadow: 0 0 8px #FFD700;}
+      to  { box-shadow: 0 0 22px #FFD700, 0 0 10px #fff;}
+    }
+    .divine-btn {
+      margin-top: 8px;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 22px;
+      background: var(--btn-gold);
+      color: #1a0633;
+      font-family: inherit;
+      font-size: 1.21rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 19px #FFD700, 0 0 6px #fffbe8;
+      letter-spacing: 1.6px;
+      text-shadow: 0 0 7px #fffbe8;
+      outline: none;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      transition: background 0.18s, transform 0.19s, box-shadow 0.16s;
+    }
+    .divine-btn:active {
+      transform: scale(0.97);
+      background: #fffbe8;
+      box-shadow: 0 0 8px #FFD700;
+    }
+    .share-section {
+      margin-top: 28px;
+      text-align: center;
+      background: rgba(38, 18, 41, 0.93);
+      border-radius: 16px;
+      padding: 21px 14px 15px;
+      border: 2.5px solid #FFD700;
+      box-shadow: 0 0 18px #FFD700, 0 0 3px #fff;
+      color: #fffbe8;
+      font-size: 1.13rem;
+      display: none;
+      animation: fadeIn 1.2s;
+    }
+    .share-link {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 11px 23px;
+      background: var(--btn-gold);
+      border-radius: 18px;
+      color: #3e2161;
+      font-weight: bold;
+      font-size: 1.13rem;
+      text-decoration: none;
+      box-shadow: 0 0 12px #FFD700, 0 0 4px #fff;
+      transition: background 0.14s, transform 0.15s;
+      animation: btnPulse 1.8s infinite alternate;
+      letter-spacing: 1.3px;
+    }
+    .share-link:hover { background: #fffbe8; transform: scale(1.08);}
+    @keyframes btnPulse {
+      from { box-shadow: 0 0 8px #FFD700, 0 0 2px #fff;}
+      to   { box-shadow: 0 0 22px #FFD700, 0 0 13px #fff;}
+    }
+    .popup {
+      position: fixed;
+      z-index: 1000;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(30, 8, 35, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.9s;
+    }
+    .popup-content {
+      background: linear-gradient(135deg, #24113b 60%, #51305e 100%);
+      border-radius: 27px;
+      box-shadow: 0 0 36px #FFD700, 0 0 8px #fff;
+      border: 3px solid #FFD700;
+      padding: 37px 23px 23px;
+      text-align: center;
+      color: #FFD700;
+      max-width: 94vw;
+      font-family: var(--hindi), serif;
+      font-size: 1.29rem;
+      letter-spacing: 1.6px;
+      text-shadow: 0 0 13px #FFD700, 0 0 4px #fff;
+      position: relative;
+      animation: popupEnter 1.2s;
+    }
+    .popup-close {
+      position: absolute;
+      top: 12px; right: 25px;
+      font-size: 1.55rem;
+      background: none;
+      border: none;
+      color: #FFD700;
+      cursor: pointer;
+      text-shadow: 0 0 8px #FFD700;
+      transition: color 0.16s;
+    }
+    .popup-close:hover { color: #fffbe8;}
+    @keyframes popupEnter {
+      from { transform: scale(0.82);}
+      to   { transform: scale(1);}
+    }
+    @keyframes fadeIn {
+      from { opacity: 0;}
+      to   { opacity: 1;}
+    }
+    .sound-btn {
+      position: fixed;
+      top: 17px;
+      right: 17px;
+      z-index: 15;
+      background: #24113bdd;
+      color: #FFD700;
+      border: 2.2px solid #FFD700;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      box-shadow: 0 0 10px #FFD700, 0 0 4px #fff;
+      padding: 9px 13px 8px 13px;
+      cursor: pointer;
+      outline: none;
+      transition: background 0.16s, color 0.14s;
+      animation: divineGlow 1.7s alternate infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sound-btn:active { background: #FFD700; color: #24113b;}
+    @media (max-width: 700px) {
+      .divine-header { font-size: 1.55rem;}
+      .divine-sub { font-size: 1.07rem;}
+      .container { padding: 16px 2vw 60px;}
+      .mantra-card, .aarti-section, .blessing-day, .mala-section, .offer-section, .quiz-section { font-size: .97rem;}
+      .popup-content { font-size: 1.04rem;}
+      .share-section { font-size: 1rem;}
+    }
+    @media (max-width: 430px) {
+      .container { padding: 7px 0vw 38px;}
+      .mantra-card, .aarti-section, .blessing-day, .mala-section, .offer-section, .quiz-section { font-size: .91rem;}
+      .popup-content { font-size: .89rem; padding: 16px 2px 10px;}
+      .share-section { padding: 9px 3px 7px;}
+      .sound-btn { font-size: 1.13rem; padding: 7px 7px 5px 7px;}
+      .share-link,.divine-btn,.aarti-btn,.mala-btn,.offer-btn { font-size: 1rem; padding-left:14px;padding-right:14px;}
+    }
+  </style>
+</head>
+<body>
+  <button class="sound-btn" id="soundBtn" title="ध्वनि चालू/बंद करें">🔊</button>
+  <script>
+    for(let i=0;i<22;i++) {
+      let p=document.createElement('div');
+      p.className='particle';
+      let size=18+Math.random()*32;
+      p.style.width=p.style.height=size+'px';
+      p.style.left=(Math.random()*99)+'vw';
+      p.style.top=(Math.random()*92)+'vh';
+      p.style.animationDuration=(10+Math.random()*8)+'s';
+      document.body.appendChild(p);
+    }
+  </script>
+  <span class="bg-symbol trishul1">🔱</span>
+  <span class="bg-symbol om1">🕉️</span>
+  <span class="bg-symbol trishul2">🔱</span>
+  <span class="bg-symbol om2">🕉️</span>
+  <span class="bg-symbol damru">🪘</span>
+  <span class="bg-symbol crescent">🌙</span>
+  <span class="bg-symbol ganga">💧</span>
+  <div class="container">
+    <div class="divine-header">सावन शिव भक्ति</div>
+    <div class="divine-sub">🔱 शिव की कृपा से, जीवन दिव्य बने 🔱</div>
+    <div class="blessing-day" id="blessingDay"></div>
+    <div class="countdown-container" id="countdown"></div>
+    <div class="mantra-cards">
+      <div class="mantra-card">
+        <div class="mantra-text">ॐ नमः शिवाय</div>
+        <div class="mantra-explanation">
+          यह पंचाक्षरी मंत्र सभी दुखों का नाश करता है और आत्मा को शिव के साथ जोड़ता है।
+        </div>
+      </div>
+      <div class="mantra-card">
+        <div class="mantra-text">महामृत्युंजय मंत्र:</div>
+        <div class="mantra-text" style="font-size:1.06rem;">
+          ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम्।<br>
+          उर्वारुकमिव बन्धनान् मृत्योर्मुक्षीय मामृतात्॥
+        </div>
+        <div class="mantra-explanation">
+          इस मंत्र का जप जीवन के सभी संकटों से रक्षा करता है और अमरता की ओर ले जाता है।
+        </div>
+      </div>
+      <div class="mantra-card">
+        <div class="mantra-text">ॐ शिवाय नमः</div>
+        <div class="mantra-explanation">
+          यह मंत्र शांति, शक्ति और सकारात्मक ऊर्जा का संचार करता है।
+        </div>
+      </div>
+    </div>
+    <div class="aarti-section" id="aartiSection">
+      <div class="aarti-title">🔱 शिव आरती (Aarti) 🔱</div>
+      <div class="aarti-lyrics" id="aartiLyrics" style="max-height:0;transition:max-height 1.1s;"> </div>
+      <button class="aarti-btn" id="aartiBtn">आरती पढ़ें</button>
+    </div>
+    <div class="mala-section">
+      <div>रुद्राक्ष माला जप:</div>
+      <div class="mala-count" id="malaCount">0/108</div>
+      <br>
+      <button class="mala-btn" id="malaInc">🔴 जप गिनें</button>
+      <button class="mala-btn" id="malaReset">🔄 रीसेट</button>
+    </div>
+    <div class="offer-section">
+      <div>शिवलिंग पर बेल पत्र/फूल अर्पित करें:</div>
+      <button class="offer-btn" onclick="offerDivine('🌿')">🌿 बेल पत्र</button>
+      <button class="offer-btn" onclick="offerDivine('🌸')">🌸 पुष्प</button>
+    </div>
+    <div class="quiz-section" id="quizSection">
+      <div class="quiz-q" id="quizQ"></div>
+      <div id="quizOpts"></div>
+      <div class="quiz-feedback" id="quizFeedback"></div>
+    </div>
+    <form class="name-form" id="nameForm" autocomplete="off">
+      <div class="name-input-box">
+        <input type="text" id="nameInput" class="name-input" placeholder="अपना नाम दर्ज करें..." maxlength="18" required>
+      </div>
+      <button type="submit" class="divine-btn">Share with your friends</button>
+    </form>
+    <div id="shareSection" class="share-section">
+      <div id="shareMsg"></div>
+      <a target="_blank" rel="noopener" id="whatsappShareLink" class="share-link">WhatsApp पर भेजें</a>
+    </div>
+  </div>
+  <div id="motivationalPopup" class="popup" style="display:none;">
+    <div class="popup-content">
+      <button class="popup-close" onclick="closePopup()" title="बंद करें">×</button>
+      <div id="popupMsg"></div>
+    </div>
+  </div>
+  <div id="sawanWishPopup" class="popup" style="display:none;">
+    <div class="popup-content">
+      <button class="popup-close" onclick="closeSawanWish()" title="बंद करें">×</button>
+      <div style="font-size:1.35rem;letter-spacing:2px;color:#FFD700; font-family:'Tiro Devanagari Hindi',serif;">
+        🌿 <span style="font-size:1.9rem;">सावन माह की हार्दिक शुभकामनाएँ!</span> 🌸<br><br>
+        भोलेनाथ की कृपा से<br>
+        आपका जीवन मंगलमय और सुखमय हो।<br><br>
+        <span style="font-size:1.2rem;color:#fffbe8;">हर हर महादेव!</span>
+      </div>
+    </div>
+  </div>
+  <audio id="divineAudio" loop preload="auto">
+    <source src="https://cdn.pixabay.com/audio/2022/10/16/audio_12a6e50bc3.mp3" type="audio/mp3">
+  </audio>
+  <script>
+    // Blessing of the Day
+    const blessings = [
+      "आप पर शिव की कृपा सदैव बनी रहे।",
+      "शिव आपको शक्ति, सफलता और शांति दें।",
+      "महादेव आपके जीवन के संकट दूर करें।",
+      "शिव का आशीर्वाद आपके परिवार में सुख लाए।",
+      "हर हर महादेव! आपके कार्य सिद्ध हों।",
+      "शिव आपके मन को सदा शांत रखें।"
+    ];
+    document.getElementById('blessingDay').textContent = "🌸 " + blessings[Math.floor(Math.random()*blessings.length)];
+
+    // Sawan countdown until 11 July 12:00 AM, then show wish popup
+    function updateCountdown() {
+      let cd = document.getElementById('countdown');
+      // Target: 11 July 2025, 00:00:00
+      let target = new Date(new Date().getFullYear(), 6, 11, 0, 0, 0);
+      let now = new Date();
+      let diff = target - now;
+      if(diff > 0) {
+        let days = Math.floor(diff/86400000);
+        let h = Math.floor((diff%86400000)/3600000);
+        let m = Math.floor((diff%3600000)/60000);
+        let s = Math.floor((diff%60000)/1000);
+        cd.innerHTML = `<span style="color:#FFD700;font-size:1.18rem;">सावन आरंभ होने में:</span><br>
+        <span style="font-size:1.17rem;">${days} दिन, ${h} घंटे, ${m} मिनट, ${s} सेकंड</span>`;
+      } else {
+        cd.innerHTML = '';
+        if(!window.sawanWished) {
+          setTimeout(showSawanWish, 600);
+          window.sawanWished = true;
+        }
+      }
+    }
+    function showSawanWish() {
+      document.getElementById('sawanWishPopup').style.display = 'flex';
+    }
+    function closeSawanWish() {
+      document.getElementById('sawanWishPopup').style.display = 'none';
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1100);
+
+    // Aarti Lyrics
+    const aarti = [
+      "ॐ जय शिव ओंकारा, स्वामी जय शिव ओंकारा।",
+      "ब्रम्हा, विष्णु, सदाशिव, अर्द्धांगी धारा॥ ॐ जय शिव ओंकारा…॥",
+      "एकानन चतुर्भुज, तिनि रूप धारी।",
+      "तीन रंग तीन मुख, त्रिगुण संवारी॥ ॐ जय शिव ओंकारा…॥",
+      "कंठ में बसत नागराज सुहाये।",
+      "गंग बहत जटा में, मृगमद छाये॥ ॐ जय शिव ओंकारा…॥",
+      "शिव अष्टकम, शिव तांडव स्तोत्र, महामृत्युंजय मंत्र: सबका सामर्थ्य शिव में।"
+    ];
+    let aartiOpen = false;
+    const aartiBtn = document.getElementById('aartiBtn');
+    const aartiLyrics = document.getElementById('aartiLyrics');
+    aartiBtn.onclick = function() {
+      if(!aartiOpen) {
+        aartiLyrics.style.maxHeight = "230px";
+        aartiLyrics.innerHTML = aarti.map(l=>l).join('<br>');
+        aartiBtn.textContent = "छुपाएँ";
+        aartiOpen = true;
+      } else {
+        aartiLyrics.style.maxHeight = "0";
+        aartiBtn.textContent = "आरती पढ़ें";
+        setTimeout(()=>{aartiLyrics.innerHTML="";},600);
+        aartiOpen = false;
+      }
+    };
+
+    // Rudraksha Mala Counter
+    let malaCnt = 0;
+    document.getElementById('malaInc').onclick = function() {
+      if(malaCnt<108) malaCnt++;
+      else malaCnt=1;
+      updateMala();
+    };
+    document.getElementById('malaReset').onclick = function() {
+      malaCnt=0; updateMala();
+    };
+    function updateMala() {
+      document.getElementById('malaCount').textContent = malaCnt+"/108";
+      document.getElementById('malaCount').style.background = (malaCnt==108) ? "#FFD700" : "#2d0736";
+      document.getElementById('malaCount').style.color = (malaCnt==108) ? "#3e2161" : "#FFD700";
+    }
+
+    // Bel Patra / Pushp (offering) animation
+    function offerDivine(emoji) {
+      let x = Math.random()*60+20;
+      let y = Math.random()*30+60;
+      let el = document.createElement('div');
+      el.className = 'offering-anim';
+      el.textContent = emoji;
+      el.style.left = x+'vw';
+      el.style.top = y+'vh';
+      document.body.appendChild(el);
+      setTimeout(()=>{el.remove();},2000);
+    }
+
+    // Quiz Section
+    const quizData = [
+      {
+        q: "शिव का प्रिय पुष्प कौन सा है?",
+        opt: ["गुलाब", "कमल", "धतूरा", "सूरजमुखी"],
+        a: 2
+      },
+      {
+        q: "शिव का एक नाम क्या है?",
+        opt: ["शंकर", "राम", "कृष्ण", "विष्णु"],
+        a: 0
+      },
+      {
+        q: "शिवजी के माथे पर कौन प्रवाहित होती हैं?",
+        opt: ["सरस्वती", "गंगा", "यमुना", "नर्मदा"],
+        a: 1
+      }
+    ];
+    let quizIndex = Math.floor(Math.random()*quizData.length);
+    function renderQuiz() {
+      let q = quizData[quizIndex];
+      document.getElementById('quizQ').textContent = q.q;
+      let opts = '';
+      q.opt.forEach((o,i)=>{
+        opts += `<button class="quiz-opt" onclick="answerQuiz(${i})">${o}</button>`;
+      });
+      document.getElementById('quizOpts').innerHTML = opts;
+      document.getElementById('quizFeedback').textContent = '';
+    }
+    window.answerQuiz = function(idx) {
+      let q = quizData[quizIndex];
+      if(idx==q.a){
+        document.getElementById('quizFeedback').innerHTML = "✅ सही उत्तर! हर हर महादेव!";
+      } else {
+        document.getElementById('quizFeedback').innerHTML = "❌ सही उत्तर: <b>"+q.opt[q.a]+"</b>";
+      }
+      setTimeout(()=>{
+        quizIndex = (quizIndex+1)%quizData.length;
+        renderQuiz();
+      }, 1600);
+    }
+    renderQuiz();
+
+    // Motivational thoughts in Hindi
+    const shivThoughts = [
+      "शिव का ध्यान, जीवन में हर बाधा को सुख में बदल देता है।",
+      "जो शिव का नाम लेता है, उसे कभी हार का सामना नहीं करना पड़ता।",
+      "शिव की कृपा से असंभव भी संभव हो जाता है।",
+      "सच्ची भक्ति से शिव हर इच्छा पूरी करते हैं।",
+      "शिव की शरण में जाने से आत्मा को शांति मिलती है।",
+      "शिव का आशीर्वाद सदा आपके साथ रहे।",
+      "हर हर महादेव! कठिन समय में भी विश्वास मत खोइए।",
+      "शिव ही सत्य हैं, शिव ही अनंत हैं।",
+      "शिव का नाम जपिए, जीवन में उजाला लाइए।"
+    ];
+    window.addEventListener('DOMContentLoaded', function() {
+      setTimeout(() => {
+        if (
+          !window.sawanWished &&
+          document.getElementById('sawanWishPopup').style.display !== 'flex'
+        ) {
+          const popup = document.getElementById('motivationalPopup');
+          const popupMsg = document.getElementById('popupMsg');
+          let thought = shivThoughts[Math.floor(Math.random() * shivThoughts.length)];
+          popupMsg.textContent = "🌼 " + thought;
+          popup.style.display = 'flex';
+        }
+      }, 900);
+    });
+    function closePopup() {
+      document.getElementById('motivationalPopup').style.display = 'none';
+    }
+
+    // Name input and share logic
+    const nameForm = document.getElementById('nameForm');
+    const nameInput = document.getElementById('nameInput');
+    const shareSection = document.getElementById('shareSection');
+    const shareMsg = document.getElementById('shareMsg');
+    const whatsappShareLink = document.getElementById('whatsappShareLink');
+    nameForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      let userName = nameInput.value.trim();
+      if (!userName) {
+        nameInput.focus();
+        return;
+      }
+      let msg = `🕉️ ${userName} ने आपके लिए कुछ विशेष भेजा है 🔱 \nनीचे लिंक पर क्लिक करें:`;
+      let shareText = encodeURIComponent(msg + "\n" + window.location.href);
+      whatsappShareLink.href = `https://wa.me/?text=${shareText}`;
+      shareMsg.innerHTML = `<b>आप अपने मित्रों को यह दिव्य संदेश भेज सकते हैं:</b><br><br><span style="font-family:'Tiro Devanagari Hindi',serif;font-size:1.13rem;">${msg}</span>`;
+      shareSection.style.display = 'block';
+      shareSection.style.animation = "fadeIn 1.1s";
+      setTimeout(() => {
+        shareSection.scrollIntoView({behavior: "smooth", block: "center"});
+      }, 100);
+    });
+    nameInput.addEventListener('focus', function() {
+      this.style.boxShadow = "0 0 22px #FFD700, 0 0 8px #fff";
+    });
+    nameInput.addEventListener('blur', function() {
+      this.style.boxShadow = "0 0 8px #FFD700";
+    });
+
+    // Divine Audio (Om chanting loop)
+    let audio = document.getElementById('divineAudio');
+    let soundBtn = document.getElementById('soundBtn');
+    let soundOn = false;
+    soundBtn.onclick = function() {
+      if(!soundOn) {
+        audio.volume = 0.35;
+        audio.play();
+        soundOn = true;
+        soundBtn.textContent = "🔇";
+        soundBtn.title = "ध्वनि बंद करें";
+      } else {
+        audio.pause();
+        soundOn = false;
+        soundBtn.textContent = "🔊";
+        soundBtn.title = "ध्वनि चालू करें";
+      }
+    };
+    audio.pause();
+  </script>
+</body>
+</html>
